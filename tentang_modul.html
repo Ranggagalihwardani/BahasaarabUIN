@@ -6,138 +6,161 @@
   <title>Tentang Modul</title>
 
   <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      min-height:100vh;
-      background:linear-gradient(135deg, #4facfe 0%, #00f2fe 50%, #8affd3 100%);
-      overflow:hidden;
-      color:white;
-      position:relative;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #8EC5FC 0%, #E0C3FC 50%, #F9F7FF 100%);
+      overflow-x: hidden;        /* FIX: boleh geser ke bawah */
+      overflow-y: auto;          /* FIX: aktifkan scroll */
+      position: relative;
+      color: rgb(0,0,0);
     }
 
     /* Floating shapes */
-    .bg-animation { position:fixed; inset:0; z-index:0; overflow:hidden; }
-    .shape {
-      position:absolute; border-radius:50%;
-      background:rgba(255,255,255,0.15);
-      animation:float 18s infinite ease-in-out;
+    .bg-animation {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
     }
-    .shape1 { width:300px; height:300px; top:12%; left:10%; }
-    .shape2 { width:220px; height:220px; bottom:10%; right:12%; animation-delay:4s; }
-    .shape3 { width:160px; height:160px; top:55%; left:25%; animation-delay:7s; }
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.20);
+      animation: float 20s infinite ease-in-out;
+    }
+    .shape1 { width: 300px; height: 300px; top: 10%; left: 10%; }
+    .shape2 { width: 220px; height: 220px; bottom: 15%; right: 12%; animation-delay: 4s; }
+    .shape3 { width: 160px; height: 160px; top: 55%; left: 25%; animation-delay: 8s; }
 
     @keyframes float {
-      0%,100% { transform:translate(0,0); }
-      50% { transform:translate(25px,-30px); }
+      0%,100% { transform: translate(0,0); }
+      50% { transform: translate(30px, -25px); }
     }
 
-    /* Main container */
+    /* Stars */
+    .stars { position: fixed; inset: 0; pointer-events:none; z-index: 1; }
+    .star {
+      position:absolute; background:white; border-radius:50%;
+      opacity:0; animation: twinkle 3s infinite;
+    }
+    @keyframes twinkle { 0%,100%{opacity:0;} 50%{opacity:1;} }
+
+    /* Container */
     .main-container {
-      position:relative;
-      z-index:2;
-      max-width:900px;
-      margin:40px auto;
-      padding:20px;
-      text-align:center;
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      text-align: center;
     }
 
+    /* Glass card */
     .content-box {
-      background:rgba(255,255,255,0.18);
-      border:2px solid rgba(255,255,255,0.3);
-      backdrop-filter:blur(15px);
-      padding:30px;
-      border-radius:25px;
-      box-shadow:0 10px 25px rgba(0,0,0,0.25);
-      animation:fadein 0.8s ease;
+      background: rgba(255,255,255,0.18);
+      border: 2px solid rgba(255,255,255,0.35);
+      backdrop-filter: blur(20px);
+      padding: 35px;
+      border-radius: 25px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      animation: fadein 0.7s ease;
     }
 
     @keyframes fadein {
-      from { opacity:0; transform:translateY(20px); }
-      to { opacity:1; transform:translateY(0); }
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     h1 {
-      font-size:2.5rem;
-      margin-bottom:15px;
+      font-size: 2.4rem;
+      margin-bottom: 10px;
+      font-weight: 700;
     }
 
+    .emoji-title { font-size: 3rem; margin-bottom: 10px; }
+
     p {
-      font-size:1.2rem;
-      line-height:1.7rem;
-      margin-bottom:15px;
-      opacity:0.95;
+      font-size: 1.2rem;
+      line-height: 1.7rem;
+      margin-bottom: 15px;
+      opacity: 0.9;
     }
 
     .sub-title {
-      font-size:1.5rem;
-      margin-top:25px;
-      margin-bottom:5px;
-      font-weight:bold;
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-top: 25px;
+      margin-bottom: 10px;
     }
 
     /* Back button */
     .back-btn {
-      display:inline-block;
-      padding:12px 22px;
-      margin-top:25px;
-      background:rgba(255,255,255,0.2);
-      border:2px solid rgba(255,255,255,0.4);
-      border-radius:20px;
-      color:white;
-      text-decoration:none;
-      transition:0.3s;
+      display: inline-block;
+      padding: 12px 22px;
+      margin-top: 30px;
+      background: rgba(255,255,255,0.2);
+      border: 2px solid rgba(255,255,255,0.4);
+      border-radius: 20px;
+      color: rgb(0,0,0);
+      text-decoration: none;
+      transition: 0.3s;
     }
     .back-btn:hover {
-      background:rgba(255,255,255,0.35);
-      transform:translateX(-5px);
+      background: rgba(255,255,255,0.35);
+      transform: translateX(-5px);
     }
-
   </style>
 </head>
 
 <body>
 
-  <!-- Background -->
+  <!-- Floating background -->
   <div class="bg-animation">
     <div class="shape shape1"></div>
     <div class="shape shape2"></div>
     <div class="shape shape3"></div>
   </div>
 
+  <!-- Stars -->
+  <div class="stars" id="stars"></div>
+
   <div class="main-container">
+
     <div class="content-box">
 
-      <h1>📘 Tentang Modul Pembelajaran</h1>
+      <div class="emoji-title">📘✨</div>
+      <h1>Tentang Modul Pembelajaran</h1>
 
       <p>
-        Aplikasi modul pembelajaran Bahasa Arab ini dirancang khusus untuk membantu peserta didik 
-        dalam memahami materi secara interaktif, menarik, dan mudah dipelajari. 
-        Modul ini dilengkapi dengan materi mufrodat, qowaid, qira'ah, istima', video pembelajaran, 
-        hingga latihan soal.
+        Modul ini dirancang untuk membantu siswa belajar Bahasa Arab secara modern,
+        interaktif, dan menyenangkan. Dengan tampilan visual menarik, audio, video,
+        dan latihan, modul ini cocok untuk pembelajaran digital masa kini.
       </p>
 
+      <div class="sub-title">🏫 Untuk Siapa Modul Ini Dibuat?</div>
       <p>
-        Modul ini digunakan pada jenjang pendidikan:
-        <br><b>🏫 Bahasa Arab Kelas 10 MAN 2 Klaten</b>
-        <br>atau lembaga pendidikan setingkatnya.
+        Modul ini ditujukan untuk:<br>
+        <b>Madrasah Tsanawiyah (MTs)</b> dan lembaga pendidikan setingkat.
       </p>
 
       <div class="sub-title">🎯 Tujuan Pembuatan Modul</div>
       <p>
-        • Memberikan pengalaman belajar yang modern dan interaktif  
         • Mempermudah siswa memahami materi Bahasa Arab  
-        • Memperkuat hafalan mufrodat melalui gambar dan audio  
-        • Menyediakan latihan soal berbasis link yang mudah diakses  
+        • Menyediakan belajar interaktif dengan gambar, audio dan video  
+        • Menyederhanakan qowaid & mufrodat  
+        • Menyediakan latihan terintegrasi  
       </p>
 
-      <div class="sub-title">👨🏻‍💻 Tim Pengembang</div>
+      <div class="sub-title">👨🏻‍💻 Pembuat Aplikasi</div>
       <p>
-        Aplikasi ini dikembangkan oleh:
-        <br><b></b>
-        <br><b></b>
-        <br><b></b>
+        Dikembangkan oleh:<br>
+        <b>Rangga Galih Wardani</b><br>
+        Program Studi Sistem Informasi<br>
+        Universitas Duta Bangsa Surakarta
       </p>
 
       <div class="sub-title">⚙️ Teknologi yang Digunakan</div>
@@ -145,12 +168,28 @@
         • HTML5  
         • CSS3 (Glassmorphism + Animasi)  
         • JavaScript  
-        • Media gambar, audio, dan video  
       </p>
 
-      <a href="menu_utama.html" class="back-btn">← Kembali ke Menu Utama</a>
+      <a href="index.html" class="back-btn">← Kembali ke Menu Utama</a>
+
     </div>
+
   </div>
+
+  <script>
+    const stars = document.getElementById("stars");
+    for (let i = 0; i < 80; i++) {
+      const s = document.createElement("div");
+      s.className = "star";
+      const size = Math.random() * 3 + 1;
+      s.style.width = size + "px";
+      s.style.height = size + "px";
+      s.style.top = Math.random() * 100 + "%";
+      s.style.left = Math.random() * 100 + "%";
+      s.style.animationDelay = Math.random() * 2 + "s";
+      stars.appendChild(s);
+    }
+  </script>
 
 </body>
 </html>
