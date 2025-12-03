@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bab 1 - At-Ta'aruf</title>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      overflow-x: hidden;
+      position: relative;
+      color: white;
+    }
+
+    /* Background floating shapes */
+    .bg-animation { position: fixed; inset: 0; z-index: 0; overflow: hidden; }
+    .floating-shape {
+      position: absolute; border-radius: 50%;
+      background: rgba(255,255,255,0.12); animation: float 20s infinite ease-in-out;
+    }
+    .shape1 { width: 300px; height: 300px; top: 10%; left: 10%; }
+    .shape2 { width: 200px; height: 200px; top: 60%; right: 15%; animation-delay: 4s; }
+    .shape3 { width: 150px; height: 150px; bottom: 10%; left: 25%; animation-delay: 8s; }
+    @keyframes float { 0%,100%{ transform: translate(0,0);} 50%{ transform: translate(40px,-30px);} }
+
+    /* Stars */
+    .stars { position: fixed; inset: 0; pointer-events:none; z-index:1; }
+    .star {
+      position:absolute; background:white; border-radius:50%;
+      opacity:0; animation: twinkle 3s infinite;
+    }
+    @keyframes twinkle { 0%,100%{opacity:0;} 50%{opacity:1;} }
+
+    /* Main Container */
+    .main-container { position:relative; z-index:2; max-width:1000px; margin:auto; padding:20px; }
+
+    /* Header */
+    .header-content {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(20px);
+      border-radius: 25px;
+      padding: 30px;
+      margin-bottom: 30px;
+      border: 2px solid rgba(255,255,255,0.25);
+      text-align:center;
+    }
+    h1 { font-size:2.3rem; margin-bottom:10px; }
+    .subtitle { font-size:1.1rem; opacity:0.9; }
+
+    /* Submenu buttons */
+    .submenu-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+    .submenu-btn {
+      padding: 12px;
+      background: rgba(255,255,255,0.15);
+      border: 2px solid rgba(255,255,255,0.25);
+      border-radius: 18px;
+      text-align: center;
+      cursor: pointer;
+      font-size: 1.05rem;
+      transition: 0.3s;
+    }
+    .submenu-btn:hover,
+    .submenu-btn.active {
+      background: rgba(255,255,255,0.28);
+      transform: translateY(-4px);
+    }
+
+    /* Content Section */
+    .content-section {
+      display:none;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(255,255,255,0.25);
+      padding: 25px;
+      border-radius: 20px;
+      margin-bottom: 25px;
+      animation: fadein 0.5s ease;
+    }
+    @keyframes fadein { from { opacity:0; transform: translateY(10px);} to { opacity:1; transform: translateY(0);} }
+
+    .section-title {
+      font-size: 1.7rem;
+      margin-bottom: 15px;
+      text-align:center;
+    }
+
+    /* Image cards */
+    .mufrodat-card {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 2px solid rgba(255, 255, 255, 0.25);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: 0.4s ease;
+    }
+    .mufrodat-img {
+      width: 100%;
+      max-width: 900px;
+      border-radius: 12px;
+      object-fit: contain;
+    }
+
+    /* Video style */
+    .video-wrapper video {
+    width: 100%;
+    display: block;
+}
+
+    /* Latihan Card */
+    .latihan-card {
+      display: block;
+      width: 100%;
+      margin-top: 20px;
+      padding: 30px 20px;
+      background: linear-gradient(90deg, #ffe9c4, #ffe0b2);
+      border-radius: 35px;
+      text-decoration: none;
+      color: #333;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      transition: 0.3s ease;
+    }
+    .latihan-card:hover { transform: translateY(-5px); }
+
+    .latihan-card-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #e46b00;
+    }
+
+    /* Back button */
+    .back-btn {
+      display:inline-block;
+      margin-top:20px;
+      padding:12px 22px;
+      background:rgba(255,255,255,0.15);
+      border:2px solid rgba(255,255,255,0.3);
+      border-radius:20px;
+      color:white;
+      text-decoration:none;
+      transition:0.3s;
+    }
+    .back-btn:hover { background: rgba(255,255,255,0.25); transform:translateX(-5px); }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Background -->
+  <div class="bg-animation">
+    <div class="floating-shape shape1"></div>
+    <div class="floating-shape shape2"></div>
+    <div class="floating-shape shape3"></div>
+  </div>
+  <div class="stars" id="stars"></div>
+
+  <div class="main-container">
+
+    <!-- HEADER -->
+    <div class="header-content">
+      <h1>الباب الأول - At-Ta'aruf</h1>
+      <p class="subtitle">Bab tentang perkenalan diri dalam bahasa Arab</p>
+    </div>
+
+    <!-- SUBMENU -->
+    <div class="submenu-container">
+      <div class="submenu-btn active" onclick="showSection('pengantar')">📖 Pengantar</div>
+      <div class="submenu-btn" onclick="showSection('mufrodat')">📚 Mufrodat</div>
+      <div class="submenu-btn" onclick="showSection('qowaid')">📘 Qowaid</div>
+      <div class="submenu-btn" onclick="showSection('qiraah')">💬 Qira'ah</div>
+      <div class="submenu-btn" onclick="showSection('istima')">🎧 Istima'</div>
+      <div class="submenu-btn" onclick="showSection('video')">🎥 Video'</div>
+      <div class="submenu-btn" onclick="showSection('latihan')">✍️ Latihan</div>
+    </div>
+
+    <!-- PENGANTAR -->
+    <div id="pengantar" class="content-section" style="display:block;">
+      <h2 class="section-title">📖 Pengantar</h2>
+      <p>
+        Bab ini membahas tentang perkenalan diri dalam bahasa Arab. Siswa mempelajari cara 
+        memperkenalkan diri, menanyakan nama, asal, dan informasi dasar lainnya.
+      </p>
+    </div>
+
+    <!-- MUFRODAT -->
+    <div id="mufrodat" class="content-section">
+      <h2 class="section-title">📚 Mufrodat</h2>
+
+      <div class="mufrodat-card">
+        <img src="../images/mufrodatt1.png" class="mufrodat-img">
+      </div>
+    </div>
+
+    <!-- QOWAID -->
+    <div id="qowaid" class="content-section">
+      <h2 class="section-title">📘 Qowaid</h2>
+
+      <div class="mufrodat-card">
+        <img src="../images/qowaid1.png" class="mufrodat-img">
+      </div>
+
+      <div class="mufrodat-card">
+        <img src="../images/qowaid2.png" class="mufrodat-img">
+      </div>
+    </div>
+
+    <!-- QIRA'AH -->
+    <div id="qiraah" class="content-section">
+      <h2 class="section-title">💬 Qira'ah</h2>
+
+      <div class="mufrodat-card">
+        <img src="../images/qiroah1 (2).png" class="mufrodat-img">
+      </div>
+    </div>
+
+    <!-- ISTIMA -->
+    <div id="istima" class="content-section">
+      <h2 class="section-title">🎧 Istima'</h2>
+
+      <div class="video-wrapper">
+        <video controls>
+          <source src="../audio/audio mufrodat bab 1.mp3" type="audio/mp3">
+        </video>
+      </div>
+    </div>
+
+    <!-- VIDEO -->
+    <div id="video" class="content-section">
+      <h2 class="section-title">🎥 Video</h2>
+
+      <div class="video-wrapper">
+        <video controls>
+          <source src="../video/video bab 1.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+
+    <!-- LATIHAN -->
+    <div id="latihan" class="content-section">
+      <h2 class="section-title">✍️ Latihan</h2>
+
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSc3se-y0YaitNSAz84--YqKnzX9BoVRc0kFTuj56bJp6HGYJA/viewform?usp=header"
+         target="_blank" class="latihan-card">
+
+        <div class="latihan-card-title">🧠 Latihan Hiwar</div>
+        <p>Klik untuk mengerjakan latihan dialog</p>
+      </a>
+    </div>
+
+    <a href="../menu_utama.html" class="back-btn">← Kembali ke Menu Utama</a>
+
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('.content-section').forEach(sec => sec.style.display = "none");
+      document.getElementById(id).style.display = "block";
+
+      document.querySelectorAll('.submenu-btn').forEach(btn => btn.classList.remove("active"));
+      event.target.classList.add("active");
+    }
+
+    // stars
+    const stars = document.getElementById("stars");
+    for(let i=0;i<80;i++){
+      const s=document.createElement("div");
+      s.className="star";
+      const size=Math.random()*3+1;
+      s.style.width=size+"px"; s.style.height=size+"px";
+      s.style.top=Math.random()*100+"%";
+      s.style.left=Math.random()*100+"%";
+      s.style.animationDelay=Math.random()*2+"s";
+      stars.appendChild(s);
+    }
+  </script>
+
+</body>
+</html>
